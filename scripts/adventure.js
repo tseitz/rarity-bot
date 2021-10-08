@@ -18,8 +18,7 @@ async function main() {
     let overrides = { nonce: n, gasLimit: 100000 }
     let s = summons[i]
 
-    const result = await rarity.adventure(s, overrides)
-    console.log(result)
+    await rarity.adventure(s, overrides)
     console.log("Adventured summon #" + s)
     n += 1
   }
