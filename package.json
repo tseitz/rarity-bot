@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "adventure": "node scripts/adventure.js"
+    "start": "node scripts/adventure.js"
   },
   "dependencies": {
     "@nomiclabs/hardhat-etherscan": "^2.1.6",
