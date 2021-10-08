@@ -1,34 +1,35 @@
-const hre = require("hardhat");
-const ethers = hre.ethers;
+const { ethers } = require("hardhat")
+
+const abi = require("./abis/rarity-abi.js")
 
 async function main() {
-    const abi = [{ "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "approved", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "operator", "type": "address" }, { "indexed": false, "internalType": "bool", "name": "approved", "type": "bool" }], "name": "ApprovalForAll", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "level", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "summoner", "type": "uint256" }], "name": "leveled", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "class", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "summoner", "type": "uint256" }], "name": "summoned", "type": "event" }, { "inputs": [{ "internalType": "uint256", "name": "_summoner", "type": "uint256" }], "name": "adventure", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "adventurers_log", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "approve", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "class", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }], "name": "classes", "outputs": [{ "internalType": "string", "name": "description", "type": "string" }], "stateMutability": "pure", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "getApproved", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "address", "name": "operator", "type": "address" }], "name": "isApprovedForAll", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "level", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_summoner", "type": "uint256" }], "name": "level_up", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "name", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "next_summoner", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "ownerOf", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "safeTransferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "internalType": "bytes", "name": "_data", "type": "bytes" }], "name": "safeTransferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "operator", "type": "address" }, { "internalType": "bool", "name": "approved", "type": "bool" }], "name": "setApprovalForAll", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_summoner", "type": "uint256" }, { "internalType": "uint256", "name": "_xp", "type": "uint256" }], "name": "spend_xp", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_class", "type": "uint256" }], "name": "summon", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_summoner", "type": "uint256" }], "name": "summoner", "outputs": [{ "internalType": "uint256", "name": "_xp", "type": "uint256" }, { "internalType": "uint256", "name": "_log", "type": "uint256" }, { "internalType": "uint256", "name": "_class", "type": "uint256" }, { "internalType": "uint256", "name": "_level", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "symbol", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_summoner", "type": "uint256" }], "name": "tokenURI", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "transferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "xp", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "curent_level", "type": "uint256" }], "name": "xp_required", "outputs": [{ "internalType": "uint256", "name": "xp_to_next_level", "type": "uint256" }], "stateMutability": "pure", "type": "function" }]
-    const address = "0xce761D788DF608BD21bdd59d6f4B54b2e27F25Bb";
-    const signer = ethers.provider.getSigner(process.env.ADDRESS)
-    const rarity = new ethers.Contract(address, abi, signer);
+  const rarityAddress = "0xce761D788DF608BD21bdd59d6f4B54b2e27F25Bb"
+  const signer = ethers.provider.getSigner(process.env.RARITY_WALLET_ADDRESS)
+  const rarity = new ethers.Contract(rarityAddress, abi, signer)
 
-    let n = await signer.getTransactionCount()
+  let n = await signer.getTransactionCount()
 
-    // EDIT THIS LIST WITH YOU SUMMON ID'S    
-    const summons = [775295, 782322, 782339, 782342, 783020, 782323, 782340, 
-        782343, 783021, 782853, 782341]
+  console.log(n)
 
-    for (i = 0; i < summons.length; i++) {
-        let overrides = { nonce: n }
-        let s = summons[i]
+  // EDIT THIS LIST WITH YOU SUMMON ID'S
+  const summons = [558645, 713627, 713653, 713705, 713729, 727888]
 
-        await rarity.adventure(s, overrides)
-        console.log("Adventured summon #" + s)
-        n += 1
+  for (let i = 0; i < summons.length; i++) {
+    let overrides = { nonce: n, gasLimit: 100000 }
+    let s = summons[i]
 
-    }
+    const result = await rarity.adventure(s, overrides)
+    console.log(result)
+    console.log("Adventured summon #" + s)
+    n += 1
+  }
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error);
-        process.exit(1);
-    });
+setInterval(async () => {
+  try {
+    await main()
+  } catch (error) {
+    console.error(error)
+    process.exit(1)
+  }
+}, 1000 * 60 * 60 * 24)

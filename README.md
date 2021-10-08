@@ -1,25 +1,15 @@
-# Summoner's Bot
+# Basic Sample Hardhat Project
 
-*WIP*
+This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
 
-Manage your [Rarity](https://ftmscan.com/address/0xce761D788DF608BD21bdd59d6f4B54b2e27F25Bb) NFT with ease.
+Try running some of the following tasks:
 
-## Usage
-
-### Requirements
-* [Node.js](https://nodejs.org/en/)
-* [Hardhat](https://hardhat.org/getting-started/#installation)
-
-### Example calling script summon.js
-`node scripts/summon.js`
-or
-`npx hardhat run scripts/summon.js `
-
-## Scripts
-
-`summon.js`
-Summons one NFT per available class (11 in total)
-
-`adventure.js`
-Adventures with all summoners.
-Edit the list in code with your summon id's.
+```shell
+npx hardhat accounts
+npx hardhat compile
+npx hardhat clean
+npx hardhat test
+npx hardhat node
+node scripts/sample-script.js
+npx hardhat help
+```
