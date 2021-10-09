@@ -1,4 +1,5 @@
 const { ethers } = require("hardhat")
+const schedule = require("node-schedule")
 
 const abi = require("./abis/rarity-abi.js")
 
@@ -8,8 +9,6 @@ async function main() {
   const rarity = new ethers.Contract(rarityAddress, abi, signer)
 
   let n = await signer.getTransactionCount()
-
-  console.log(n)
 
   // EDIT THIS LIST WITH YOU SUMMON ID'S
   const summons = [558645, 713627, 713653, 713705, 713729, 727888]
@@ -24,11 +23,16 @@ async function main() {
   }
 }
 
-setInterval(async () => {
+let startMin = 0
+schedule.scheduleJob(`${startMin} 23 * * *`, async () => {
   try {
     await main()
+    // bump time a min so we don't overlap
+    startMin++
   } catch (error) {
     console.error(error)
-    process.exit(1)
   }
-}, 1000 * 60 * 60 * 24)
+})
+
+// keep it open
+setInterval(() => {}, 1 << 30)
