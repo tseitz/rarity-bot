@@ -3,6 +3,8 @@ const schedule = require("node-schedule")
 
 const abi = require("./abis/rarity-abi.js")
 
+console.log("waiting...")
+
 async function main() {
   const rarityAddress = "0xce761D788DF608BD21bdd59d6f4B54b2e27F25Bb"
   const signer = ethers.provider.getSigner(process.env.RARITY_WALLET_ADDRESS)
@@ -26,6 +28,7 @@ async function main() {
 let startMin = 0
 schedule.scheduleJob(`${startMin} 23 * * *`, async () => {
   try {
+    console.log("Time to go!")
     await main()
     // bump time a min so we don't overlap
     startMin++
@@ -35,4 +38,8 @@ schedule.scheduleJob(`${startMin} 23 * * *`, async () => {
 })
 
 // keep it open
-setInterval(() => {}, 1 << 30)
+setInterval(() => {
+  console.log("1 << 30")
+}, 1 << 30)
+
+// main().then(() => console.log('done'))
