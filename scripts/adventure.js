@@ -33,6 +33,7 @@ schedule.scheduleJob(`${startMin} 23 * * *`, async () => {
     // bump time a min so we don't overlap
     startMin++
   } catch (error) {
+    console.log("error :/")
     console.error(error)
   }
 })
